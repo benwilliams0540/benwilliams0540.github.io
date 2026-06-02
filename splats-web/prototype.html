@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Splats WebGPU Prototype</title>
+    <link rel="stylesheet" href="./prototype.css">
+  </head>
+  <body>
+    <main class="prototype-shell">
+      <section class="viewer-surface" aria-label="Splats WebGPU prototype">
+        <canvas id="splat-canvas" tabindex="0"></canvas>
+        <div class="viewer-panel">
+          <div>
+            <p class="eyebrow">Splats Web</p>
+            <h1 id="scene-title">WebGPU Prototype</h1>
+          </div>
+          <div class="viewer-tools">
+            <div id="scene-tabs" class="scene-tabs" role="tablist"></div>
+            <div class="render-controls" aria-label="Viewer controls">
+              <button id="mode-toggle" type="button">Orbit</button>
+              <button id="rotation-toggle" type="button">Rotate</button>
+              <button id="frame-button" type="button">Frame</button>
+              <label class="control-chip">
+                <span>FOV</span>
+                <input id="fov-control" type="range" min="25" max="90" step="1">
+                <output id="fov-value" for="fov-control"></output>
+              </label>
+              <label class="control-chip">
+                <span>Exp</span>
+                <input id="exposure-control" type="range" min="0.25" max="3" step="0.05">
+                <output id="exposure-value" for="exposure-control"></output>
+              </label>
+              <label class="control-chip">
+                <span>Px</span>
+                <input id="pixel-scale-control" type="range" min="0.5" max="1.5" step="0.05">
+                <output id="pixel-scale-value" for="pixel-scale-control"></output>
+              </label>
+              <select id="sh-band-control" aria-label="Spherical harmonics band count">
+                <option value="0">SH0</option>
+                <option value="1">SH1</option>
+                <option value="2">SH2</option>
+                <option value="3">SH3</option>
+              </select>
+              <select id="tone-mapping-control" aria-label="Tone mapping">
+                <option value="linear">Linear</option>
+                <option value="reinhard">Reinhard</option>
+                <option value="aces">ACES</option>
+              </select>
+              <select id="diagnostic-mode" aria-label="Renderer diagnostic mode">
+                <option value="0">Normal</option>
+                <option value="1">Opaque depth</option>
+                <option value="2">No sort</option>
+                <option value="3">SH0 only</option>
+                <option value="4">Radius heat</option>
+                <option value="5">Cull debug</option>
+                <option value="6">Alpha heat</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="status-bar">
+          <span id="renderer-status">Starting renderer…</span>
+          <a id="fallback-link" href="/projects/splats#viewer">SuperSplat fallback</a>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="./prototype.js"></script>
+  </body>
+</html>
