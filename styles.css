@@ -191,10 +191,10 @@ p { margin: 0 0 1rem; color: var(--text-2); }
 .hero { padding-block: clamp(24px, 3vw, 40px) clamp(28px, 4vw, 48px); }
 .hero--landing { flex: 1; width: 100%; }
 .hero-details {
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-  gap: clamp(2.5rem, 6vw, 5rem);
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  align-items: flex-start;
   margin-top: 1.5rem;
 }
 .hero h1 {
@@ -210,12 +210,14 @@ p { margin: 0 0 1rem; color: var(--text-2); }
 .hero .hero-meta span { display: inline-flex; align-items: center; gap: 0.5rem; }
 .hero-status::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
 .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.7rem; margin-top: 1.5rem; }
+.hero-details .hero-actions { margin-top: 0; }
 .hero-link { color: var(--text-2); font-size: 0.95rem; transition: color 0.2s var(--ease); }
 .hero-link:hover { color: var(--text); }
 
 /* ---- Cards / grid ---- */
 .grid { display: grid; gap: 20px; }
 .grid--projects { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
+.projects-heading { margin-block: clamp(2rem, 4vw, 2.75rem) clamp(1.5rem, 3vw, 1.9rem); }
 .projects-list { display: grid; gap: clamp(32px, 5vw, 56px); }
 
 .card {
@@ -649,6 +651,7 @@ p { margin: 0 0 1rem; color: var(--text-2); }
 /* ---- About ---- */
 .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 2.5rem; margin-top: clamp(2rem, 4vw, 2.75rem); }
 .about-actions { display: flex; flex-wrap: wrap; margin-top: 1.5rem; }
+.experience-group + .experience-group { margin-top: 2.75rem; }
 .timeline { list-style: none; margin: 0; padding: 0; }
 .timeline li { position: relative; padding: 0 0 1.8rem 1.6rem; border-left: 1px solid var(--hairline); }
 .timeline li:last-child { border-left-color: transparent; padding-bottom: 0; }
@@ -657,7 +660,7 @@ p { margin: 0 0 1rem; color: var(--text-2); }
   background: linear-gradient(135deg, var(--accent), var(--accent-3)); box-shadow: 0 0 10px rgba(10,132,255,0.6);
 }
 .timeline .role { font-weight: 600; font-size: 1.08rem; }
-.timeline .org { color: var(--accent); }
+.timeline .org { color: var(--text-2); }
 .timeline .period { font-family: var(--font-mono); font-size: 0.74rem; color: var(--text-3); margin-top: 0.15rem; }
 .timeline ul { list-style: none; margin: 0.7rem 0 0; padding: 0; }
 .timeline ul li { border: none; padding: 0 0 0.45rem 1.2rem; position: relative; color: var(--text-2); font-size: 0.96rem; }
@@ -697,9 +700,7 @@ p { margin: 0 0 1rem; color: var(--text-2); }
 @media (max-width: 880px) {
   .feature-layout { grid-template-columns: 1fr; }
   .about-grid { grid-template-columns: 1fr; gap: 1.6rem; }
-  .hero-details,
   .contact-layout { grid-template-columns: 1fr; gap: 0; }
-  .hero-controls { margin-top: 1.2rem; }
   .contact-copy { margin-top: 1.2rem; }
 }
 @media (max-width: 760px) {
@@ -743,4 +744,92 @@ p { margin: 0 0 1rem; color: var(--text-2); }
 @media (max-width: 360px) {
   .nav.container { padding-inline: 16px; }
   .nav-links a { padding-inline: 0.3rem; font-size: 0.86rem; }
+}
+
+/* Splats contribution-led case study */
+.case-hero--visual { padding-top: clamp(28px, 4vw, 48px); }
+.case-hero-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.2fr);
+  align-items: center;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+}
+.case-hero--visual h1 { font-size: clamp(2.2rem, 4.4vw, 3.3rem); }
+.case-hero--visual .lede { font-size: 1.06rem; }
+.case-hero--visual .case-facts { gap: 0.75rem 1.4rem; }
+.case-hero--visual .case-fact { font-size: 0.82rem; }
+.case-hero-media { margin: 0; min-width: 0; }
+.case-hero-media .gallery-carousel { margin: 0; }
+.case-hero-media figcaption { margin-top: 0.8rem; color: var(--text-3); font-size: 0.8rem; text-align: center; }
+.case-hero-media .carousel-control { display: grid; width: 2.25rem; height: 2.25rem; }
+.case-hero-media .carousel-control-previous { left: 0.6rem; }
+.case-hero-media .carousel-control-next { right: 0.6rem; }
+.case-release { padding-block: 1rem; }
+.case-release .prose { max-width: 85ch; border-left: 2px solid var(--accent); padding-left: 1.1rem; }
+.case-release p { font-size: 0.94rem; margin: 0; }
+.case-contributions .section-head,
+.case-engineering .section-head { max-width: 40rem; }
+.case-contributions .case-section,
+.case-engineering .case-section { padding-block: 1.5rem 0; }
+.case-contributions h3,
+.case-engineering h3 { font-size: 1.4rem; margin-bottom: 1rem; }
+.case-section-links { display: flex; flex-wrap: wrap; column-gap: 1.3rem; margin-top: 1rem; }
+.case-section-links .text-link { color: var(--accent); font-size: 0.86rem; }
+.case-engineering .case-sections { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; }
+.case-technical { border-block: 1px solid var(--hairline); margin-top: 2rem; padding-block: 1rem; }
+.case-technical summary { cursor: pointer; color: var(--text-2); font-size: 0.94rem; }
+.case-technical summary:hover { color: var(--text); }
+.case-technical summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
+#viewer { scroll-margin-top: 80px; }
+@media (max-width: 880px) {
+  .case-hero-layout { display: flex; flex-direction: column; align-items: stretch; gap: 0; }
+  .case-hero-copy { display: contents; }
+  .case-hero-media { order: 1; margin-top: 1.4rem; }
+  .case-hero-layout .case-actions { order: 2; }
+  .case-hero-layout .case-facts { order: 3; margin-top: 1.2rem; }
+  .case-hero--visual h1 { max-width: 24ch; }
+}
+@media (max-width: 760px) {
+  .case-engineering .case-sections { grid-template-columns: 1fr; gap: 1.5rem; }
+}
+.case-hero .lede .term-link { color: inherit; text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+.case-hero .lede .term-link:hover { color: var(--text); }
+.case-title-link { color: inherit; text-decoration: none; transition: color 0.2s var(--ease); }
+.case-title-link .external-arrow { display: inline-block; margin-left: 0.3em; font-size: 0.7em; color: var(--text-3); transition: transform 0.18s var(--ease), color 0.2s var(--ease); }
+.case-title-link:hover { color: var(--accent); }
+.case-title-link:hover .external-arrow { color: var(--accent); transform: translate(2px, -2px); }
+.case-title-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
+.case-contributions .section-head,
+.case-engineering .section-head { margin-bottom: 0.75rem; }
+.case-contributions .section-head .eyebrow,
+.case-engineering .section-head .eyebrow { margin-bottom: 0; }
+
+/* ---- Page transitions ----
+   Home, Experience, and Projects share the same .statement element styled identically,
+   so the browser can move it between pages. Same size and width on each page keeps the snapshot
+   from stretching mid-animation. Browsers without cross-document view transitions just navigate. */
+.statement,
+.hero .statement {
+  margin: 0;
+  max-width: 30ch;
+  font-family: var(--font-sans);
+  font-size: clamp(2rem, 3.5vw, 2.9rem);
+  font-weight: 680;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+  background: linear-gradient(180deg, #ffffff 30%, #c8ccd6 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+  .site-header { view-transition-name: site-header; }
+  .statement { view-transition-name: statement; }
+  ::view-transition-group(statement) {
+    animation-duration: 0.5s;
+    animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  ::view-transition-old(root),
+  ::view-transition-new(root) { animation-duration: 0.3s; }
 }
